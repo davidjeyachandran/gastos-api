@@ -9,9 +9,10 @@ const port = 8000;
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
-MongoClient.connect('mongodb://' + 'david' + ':' + '1password' + '@ds123625.mlab.com:23625/dj-quotes', {useNewUrlParser: true}, (err, database) => {
+MongoClient.connect(db.url, {useNewUrlParser: true}, (err, client) => {
     if (err) return console.log(err)
     // console.log(database);
+    database = client.db('dj-quotes');
 	require('./app/routes')(app, database);
 	app.listen(port, () => {
 		console.log("We are live on " + port);
