@@ -14,7 +14,13 @@ module.exports = function(app, db) {
 	});
 
 	app.post('/gastos', (req, res) => {
-		const gasto = { text: req.body.body, title: req.body.title };
+		const gasto = { 
+                        nombre: req.body.nombre, 
+                        monto: req.body.monto, 
+                        categoria: req.body.monto, 
+                        descripcion: req.body.descripcion
+                    };
+                    
 		db.collection('gastos').insert(gasto, (err, result) => {
 			if (err) {
 				res.send({ 'error': 'An error has occured' });
